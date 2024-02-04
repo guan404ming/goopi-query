@@ -1,10 +1,8 @@
 "use client";
 
-import * as React from "react";
-
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -24,13 +22,12 @@ export function Banner() {
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div>
-              <Card>
-                <CardContent className="flex h-[250px] items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="-mx-1">
+              <img
+                src="https://shoplineimg.com/597d718359d52417b70007f8/65ba1b1d5ef88400147abbb6/2160x.webp?source_format=jpg"
+                alt="gof-p5"
+              />
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
