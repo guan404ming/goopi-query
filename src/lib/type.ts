@@ -1,3 +1,3 @@
-import type { merchantTable } from "@/db/schema";
+import type { merchandiseTable } from "@/db/schema";
 
-export type SelectMerchant = typeof merchantTable.$inferSelect;
+export type SelectMerchandise = typeof merchandiseTable.$inferSelect;

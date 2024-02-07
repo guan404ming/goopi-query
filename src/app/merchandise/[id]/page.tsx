@@ -6,9 +6,9 @@ import { Post } from "@/components/post";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { db } from "@/db";
-import { merchantTable, postTable } from "@/db/schema";
+import { merchandiseTable, postTable } from "@/db/schema";
 
-export default async function MerchantPage({
+export default async function MerchandisePage({
   params,
 }: {
   params: {
@@ -16,14 +16,14 @@ export default async function MerchantPage({
   };
 }) {
   const { id } = params;
-  const [merchant] = await db
+  const [merchandise] = await db
     .select()
-    .from(merchantTable)
-    .where(eq(merchantTable.id, parseInt(id)));
+    .from(merchandiseTable)
+    .where(eq(merchandiseTable.id, parseInt(id)));
   const posts = await db
     .select()
     .from(postTable)
-    .where(eq(postTable.merchantId, merchant.id));
+    .where(eq(postTable.merchandiseId, merchandise.id));
 
   return (
     <main className="z-10 flex min-h-screen w-full flex-col items-center overflow-x-hidden pt-16">
@@ -32,17 +32,17 @@ export default async function MerchantPage({
           <Image
             width={"1200"}
             height={"1200"}
-            src={merchant.picUrl}
-            alt={merchant.name}
+            src={merchandise.picUrl}
+            alt={merchandise.name}
             className="w-full rounded-md object-cover"
           />
         </AspectRatio>
 
         <div className="space-y-2 p-6">
-          <h1 className="text-xl font-semibold">{merchant.name}</h1>
+          <h1 className="text-xl font-semibold">{merchandise.name}</h1>
           <div className="text-md flex space-x-2 border-b-2 pb-6">
-            <Badge>{merchant.color}</Badge>
-            <Badge>${merchant.price}</Badge>
+            <Badge>{merchandise.color}</Badge>
+            <Badge>${merchandise.price}</Badge>
           </div>
         </div>
       </div>
