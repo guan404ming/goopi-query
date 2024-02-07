@@ -1,7 +1,5 @@
 import { index, integer, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
-// user related
-
 export const merchantTable = pgTable(
   "merchant_table",
   {
@@ -15,3 +13,12 @@ export const merchantTable = pgTable(
     nameIndex: index("name_index").on(table.name),
   }),
 );
+
+export const postTable = pgTable("post_table", {
+  id: serial("id").primaryKey(),
+  merchantId: integer("merchant_id")
+    .unique()
+    .notNull()
+    .references(() => merchantTable.id, { onUpdate: "cascade" }),
+  postUrl: varchar("post_url").notNull(),
+});

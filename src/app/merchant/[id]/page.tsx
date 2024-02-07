@@ -6,7 +6,7 @@ import { Post } from "@/components/post";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { db } from "@/db";
-import { merchantTable } from "@/db/schema";
+import { merchantTable, postTable } from "@/db/schema";
 
 export default async function MerchantPage({
   params,
@@ -20,6 +20,10 @@ export default async function MerchantPage({
     .select()
     .from(merchantTable)
     .where(eq(merchantTable.id, parseInt(id)));
+  const posts = await db
+    .select()
+    .from(postTable)
+    .where(eq(postTable.merchantId, merchant.id));
 
   return (
     <main className="z-10 flex min-h-screen w-full flex-col items-center overflow-x-hidden pt-16">
@@ -44,27 +48,9 @@ export default async function MerchantPage({
       </div>
 
       <div className="grid grid-cols-1 gap-4">
-        <Post
-          url="https://www.instagram.com/p/C26nSewJAsC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          width={330}
-        />
-        <Post
-          url="https://www.instagram.com/p/C26nSewJAsC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          width={328}
-        />
-        <Post
-          url="https://www.instagram.com/p/C26nSewJAsC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          width={328}
-        />
-        <Post
-          url="https://www.instagram.com/p/C26nSewJAsC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          width={328}
-        />
-
-        <Post
-          url="https://www.instagram.com/p/C26nSewJAsC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          width={328}
-        />
+        {posts.map((post) => (
+          <Post key={post.id} url={post.postUrl} width={328} />
+        ))}
       </div>
     </main>
   );
