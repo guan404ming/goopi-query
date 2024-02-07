@@ -21,3 +21,8 @@ export const postTable = pgTable("post_table", {
     .references(() => merchandiseTable.id, { onUpdate: "cascade" }),
   postUrl: varchar("post_url").notNull(),
 });
+
+export const bannerTable = pgTable("banner_table", {
+  id: serial("id").primaryKey(),
+  bannerUrl: varchar("banner_url").notNull(),
+});

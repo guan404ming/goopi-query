@@ -10,10 +10,15 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import type { SelectBanner } from "@/lib/type";
 
 import { AspectRatio } from "./ui/aspect-ratio";
 
-export function Banner() {
+type BannerProps = {
+  bannerList: SelectBanner[];
+};
+
+export function Banner({ bannerList }: BannerProps) {
   return (
     <Carousel
       className="w-full"
@@ -24,16 +29,14 @@ export function Banner() {
       ]}
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {bannerList.map((_, index) => (
           <CarouselItem key={index}>
             <Card className="-mx-1">
               <AspectRatio ratio={3 / 1}>
                 <Image
                   width={"1200"}
                   height={"1200"}
-                  src={
-                    "https://shoplineimg.com/597d718359d52417b70007f8/65ba1b1d5ef88400147abbb6/1296x.webp?source_format=jpg"
-                  }
+                  src={bannerList[index].bannerUrl}
                   alt="banner"
                   className="w-full rounded-md object-cover"
                 />
