@@ -12,7 +12,7 @@ import {
 
 export default function Header() {
   return (
-    <header className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-white px-6 py-4 dark:bg-gray-900">
+    <header className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-white px-6 py-4 drop-shadow dark:bg-gray-900">
       <Link className="flex items-center" href="/">
         <MountainIcon className="h-6 w-6" />
         <span className="sr-only">Goopi Real</span>
