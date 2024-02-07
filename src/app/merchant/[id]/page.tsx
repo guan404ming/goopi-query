@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function MerchantPage() {
   return (
-    <main className="z-10 flex min-h-screen w-full flex-col items-center pt-16 overflow-x-hidden">
+    <main className="z-10 flex min-h-screen w-full flex-col items-center overflow-x-hidden pt-16">
       <div className="flex max-md:flex-col">
         <img
           src="https://shoplineimg.com/597d718359d52417b70007f8/64fdcd97d5bb54368adaaf4f/800x.webp?source_format=jpg"
