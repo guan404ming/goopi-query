@@ -17,7 +17,6 @@ export const merchandiseTable = pgTable(
 export const postTable = pgTable("post_table", {
   id: serial("id").primaryKey(),
   merchandiseId: integer("merchandise_id")
-    .unique()
     .notNull()
     .references(() => merchandiseTable.id, { onUpdate: "cascade" }),
   postUrl: varchar("post_url").notNull(),
