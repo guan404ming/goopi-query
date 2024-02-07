@@ -4,7 +4,16 @@ import { InstagramEmbed } from "react-social-media-embed";
 
 import { Badge } from "@/components/ui/badge";
 
-export default function MerchantPage() {
+export default function MerchantPage({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) {
+  const { id } = params;
+  console.log(id);
+
   return (
     <main className="z-10 flex min-h-screen w-full flex-col items-center overflow-x-hidden pt-16">
       <div className="flex max-md:flex-col">
@@ -17,12 +26,10 @@ export default function MerchantPage() {
           <h1 className="text-xl font-semibold">
             “Gof-P5” Hyperbolic Utility Track Pants
           </h1>
-          <div className="space-x-2 text-lg">
+          <div className="text-md flex space-x-2 border-b-2 pb-6">
             <Badge>l-grey</Badge>
-            <Badge>l-grey</Badge>
-            <Badge>l-grey</Badge>
+            <Badge>$3980</Badge>
           </div>
-          <p className="border-b-2 pb-4 text-lg">$3980</p>
         </div>
       </div>
 

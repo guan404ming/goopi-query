@@ -1,14 +1,33 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export function Merchant() {
+import { Card } from "@/components/ui/card";
+import type { SelectMerchant } from "@/lib/type";
+
+import { AspectRatio } from "./ui/aspect-ratio";
+
+type MerchantProps = {
+  merchant: SelectMerchant;
+};
+
+export function Merchant({ merchant }: MerchantProps) {
+  const router = useRouter();
   return (
-    <Card className="cursor-pointer">
-      <img
-        src="https://shoplineimg.com/597d718359d52417b70007f8/64fdcd97d5bb54368adaaf4f/800x.webp?source_format=jpg"
-        alt="gof-p5"
-      />
+    <Card
+      className="cursor-pointer"
+      onClick={() => router.push(`merchant/${merchant.id}`)}
+    >
+      <AspectRatio ratio={1 / 1}>
+        <Image
+          width={"100"}
+          height={"100"}
+          src={merchant.picUrl}
+          alt="Image"
+          className="w-full rounded-md object-cover"
+        />
+      </AspectRatio>
     </Card>
   );
 }
