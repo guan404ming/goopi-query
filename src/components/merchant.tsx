@@ -21,10 +21,10 @@ export function Merchant({ merchant }: MerchantProps) {
     >
       <AspectRatio ratio={1 / 1}>
         <Image
-          width={"100"}
-          height={"100"}
+          width={"1200"}
+          height={"1200"}
           src={merchant.picUrl}
-          alt="Image"
+          alt={merchant.name}
           className="w-full rounded-md object-cover"
         />
       </AspectRatio>
