@@ -3,29 +3,35 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
 import { db } from "@/db";
-import { postTable } from "@/db/schema";
+import { merchandiseTable } from "@/db/schema";
 
-const createPostRequestSchema = z.object({
-  merchandiseId: z.number(),
-  postUrl: z.string().url(),
+const createMerchandiseRequestSchema = z.object({
+  color: z.string(),
+  name: z.string(),
+  picUrl: z.string().url(),
+  price: z.number(),
 });
 
-type CreatePostRequest = z.infer<typeof createPostRequestSchema>;
+type CreateMerchandiseRequest = z.infer<typeof createMerchandiseRequestSchema>;
 
 export async function POST(request: NextRequest) {
   const data = await request.json();
   console.log(data);
 
   try {
-    createPostRequestSchema.parse(data);
+    createMerchandiseRequestSchema.parse(data);
   } catch (error) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const newPost = data as CreatePostRequest;
+  const newMerchdise = data as CreateMerchandiseRequest;
 
   try {
-    await db.insert(postTable).values(newPost).onConflictDoNothing().execute();
+    await db
+      .insert(merchandiseTable)
+      .values(newMerchdise)
+      .onConflictDoNothing()
+      .execute();
   } catch (error) {
     console.log(error);
     return NextResponse.json(

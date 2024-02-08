@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -19,14 +19,14 @@ import { Input } from "./ui/input";
 
 export function AddDialog({ id }: { id: number }) {
   const router = useRouter();
-  const [url, setUrl] = useState("");
+  const inputRef = useRef("");
 
   const handleAddPost = async () => {
     const res = await fetch("/api/post", {
       method: "POST",
       body: JSON.stringify({
         merchandiseId: id,
-        url,
+        postUrl: inputRef.current,
       }),
     });
 
@@ -55,7 +55,7 @@ export function AddDialog({ id }: { id: number }) {
 
         <Input
           placeholder="Enter the link"
-          onChange={(e) => setUrl(e.target.value)}
+          onChange={(e) => (inputRef.current = e.target.value)}
         />
         <Button className="w-full" onClick={() => handleAddPost()}>
           Enter

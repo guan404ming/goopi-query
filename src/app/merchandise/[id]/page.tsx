@@ -31,7 +31,7 @@ export default async function MerchandisePage({
 
   return (
     <main className="z-10 flex min-h-screen w-full flex-col items-center overflow-x-hidden pt-16">
-      <div className="flex max-md:flex-col">
+      <div className="flex flex-col">
         <AspectRatio ratio={1 / 1}>
           <Image
             width={"1200"}
@@ -39,6 +39,7 @@ export default async function MerchandisePage({
             src={merchandise.picUrl}
             alt={merchandise.name}
             className="w-full rounded-md object-cover"
+            priority={true}
           />
         </AspectRatio>
 
