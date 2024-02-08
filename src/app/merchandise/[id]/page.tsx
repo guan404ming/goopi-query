@@ -1,8 +1,9 @@
 import Image from "next/image";
 
 import { eq } from "drizzle-orm";
-import { PlusCircleIcon, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 
+import { AddDialog } from "@/components/add-dialog";
 import { Post } from "@/components/post";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
@@ -49,16 +50,10 @@ export default async function MerchandisePage({
           </div>
 
           <div className="flex space-x-2">
+            <AddDialog />
             <Button
               variant={"outline"}
-              className="flex w-full items-center space-x-2 shadow-sm"
-            >
-              <PlusCircleIcon size={16} />
-              <span className="mt-0.25">Add Post</span>
-            </Button>
-            <Button
-              variant={"outline"}
-              className="flex w-full items-center space-x-2 shadow-sm"
+              className="flex w-full items-center space-x-2 border-black shadow-sm"
             >
               <Bell size={16} />
               <span className="mt-0.25">Report Issue</span>
