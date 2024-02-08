@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { PlusCircleIcon } from "lucide-react";
 
 import {
@@ -15,11 +17,24 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export function AddDialog() {
+export function AddDialog({ id }: { id: number }) {
+  const router = useRouter();
   const [url, setUrl] = useState("");
 
-  const handleAddPost = () => {
-    console.log(url);
+  const handleAddPost = async () => {
+    const res = await fetch("/api/post", {
+      method: "POST",
+      body: JSON.stringify({
+        merchandiseId: id,
+        url,
+      }),
+    });
+
+    if (!res.ok) {
+      const body = await res.json();
+      throw new Error(body.error);
+    }
+    router.refresh();
   };
 
   return (

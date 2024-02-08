@@ -50,7 +50,7 @@ export default async function MerchandisePage({
           </div>
 
           <div className="flex space-x-2">
-            <AddDialog />
+            <AddDialog id={parseInt(id)} />
             <Button
               variant={"outline"}
               className="flex w-full items-center space-x-2 border-black shadow-sm"
@@ -66,9 +66,9 @@ export default async function MerchandisePage({
         <Separator />
       </div>
 
-      <div className="grid grid-cols-1 gap-4">
-        {posts.map((post) => (
-          <Post key={post.id} url={post.postUrl} width={328} />
+      <div className="grid grid-cols-1 gap-4 overflow-hidden">
+        {posts.map((post, idx) => (
+          <Post key={idx} url={post.postUrl} width={328} />
         ))}
       </div>
     </main>
