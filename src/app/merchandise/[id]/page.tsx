@@ -1,10 +1,13 @@
 import Image from "next/image";
 
 import { eq } from "drizzle-orm";
+import { PlusCircleIcon, Bell } from "lucide-react";
 
 import { Post } from "@/components/post";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { db } from "@/db";
 import { merchandiseTable, postTable } from "@/db/schema";
 
@@ -38,13 +41,34 @@ export default async function MerchandisePage({
           />
         </AspectRatio>
 
-        <div className="space-y-2 p-6">
+        <div className="space-y-4 p-6">
           <h1 className="text-xl font-semibold">{merchandise.name}</h1>
-          <div className="text-md flex space-x-2 border-b-2 pb-6">
+          <div className="text-md flex space-x-2">
             <Badge>{merchandise.color}</Badge>
             <Badge>${merchandise.price}</Badge>
           </div>
+
+          <div className="flex space-x-2">
+            <Button
+              variant={"outline"}
+              className="flex w-full items-center space-x-2 shadow-sm"
+            >
+              <PlusCircleIcon size={16} />
+              <span className="mt-0.25">Add Post</span>
+            </Button>
+            <Button
+              variant={"outline"}
+              className="flex w-full items-center space-x-2 shadow-sm"
+            >
+              <Bell size={16} />
+              <span className="mt-0.25">Report Issue</span>
+            </Button>
+          </div>
         </div>
+      </div>
+
+      <div className="mb-6 w-full px-6">
+        <Separator />
       </div>
 
       <div className="grid grid-cols-1 gap-4">
